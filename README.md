@@ -2,7 +2,7 @@ Here is a professional, production-grade `README.md` for your repository. It hig
 
 Copy and paste this directly into your `README.md` file:
 
-```markdown
+<!-- ```markdown -->
 # Horizon Airways Flight Operations Center: Passenger Re-Accommodation Engine
 
 An automated, high-throughput disruption management system that dynamically re-routes passengers during widespread flight delays and cancellations. Built with Python and Streamlit, this enterprise-grade operations terminal leverages a multi-criteria prioritization matrix and constrained graph traversal algorithms to process complex airline datasets containing **100K passengers** and **10K flights**.
@@ -28,7 +28,7 @@ When direct alternative flights are structurally exhausted, the engine instantia
 - **Financial Friction Metrics:** Penalizes flight alternatives that disrupt high-value, pre-paid ancillary services (e.g., baggage parameters, pre-booked meals, lounge clearances).
 - **Seat Class Allocation Tracking:** Dynamically registers and logs automated cabin **Upgrades and Downgrades** when original flight tiers are at capacity.
 
----
+<!-- --- -->
 
 ## Core System Performance
 
@@ -41,8 +41,8 @@ During baseline operational testing under a 2% schedule disruption factor across
   - **Multi-Hop Connection Paths:** 437 Passengers
 - **Isolated Exception Roster:** 86 Outliers (Automated separation of complex edge cases requiring manual desk intervention)
 
----
-
+<!-- --- -->
+<!--  -->
 ## User Interface & Control Panel
 
 The system features a customized, dark-mode airport operations terminal interface built entirely without emojis for a clean, sleek corporate aesthetic. 
@@ -56,11 +56,11 @@ The system features a customized, dark-mode airport operations terminal interfac
 ### Passenger Manifest & Verification Logs
 *(Insert your Data Tables and Tab Views Image Here)*
 
----
+<!-- --- -->
 
 ## File Structure & Module Dependencies
 
-```text
+<!-- ```text -->
 airline-reaccommodation-system/
 ├── data/
 │   ├── raw/             # Input Tables (airports, flights, schedules, bookings)
@@ -71,9 +71,9 @@ airline-reaccommodation-system/
 ├── app.py               # Enterprise Airport Operations Terminal UI (Streamlit)
 └── requirements.txt     # Dependency Definitions
 
-```
+<!-- ``` -->
 
----
+<!-- --- -->
 
 ## Installation & Local Deployment
 
@@ -108,8 +108,5 @@ python generate_dataset.py
 
 ```
 
-### 💡 What to do next:
-1. Replace the placeholder text rows like `*(Insert your Sidebar Control Panel Image Here)*` with your actual screenshots. 
-2. You can upload your screenshots directly to your GitHub repository in a folder named `images/` and reference them like this: `![Control Panel](images/control_panel.png)`.
-
+ 
 ```
