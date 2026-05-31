@@ -58,7 +58,7 @@ The system features a customized, dark-mode airport operations terminal interfac
 
 ## File Structure & Module Dependencies
 
-<!-- ```text -->
+```text
 airline-reaccommodation-system/
 ├── data/
 │   ├── raw/             # Input Tables (airports, flights, schedules, bookings)
@@ -69,7 +69,7 @@ airline-reaccommodation-system/
 ├── app.py               # Enterprise Airport Operations Terminal UI (Streamlit)
 └── requirements.txt     # Dependency Definitions
 
-<!-- ``` -->
+```
 
 <!-- --- -->
 
