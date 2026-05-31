@@ -1,0 +1,18 @@
+{
+  "passenger_priorities": {
+    "FIRST_CLASS_SCORE": 30,
+    "BUSINESS_CLASS_SCORE": 20,
+    "ECONOMY_CLASS_SCORE": 10,
+    "UNACCOMPANIED_MINOR_SCORE": 60,
+    "ON_DUTY_EMPLOYEE_SCORE": 40
+  },
+  "flight_ranking_rules": {
+    "DELAY_PENALTY_FACTOR": 1.0,
+    "SEAT_AVAILABILITY_WEIGHT": 10,
+    "ANCILLARY_LOSS_PENALTY_FACTOR": 0.5
+  },
+  "constraints": {
+    "ALLOW_MULTIHOP_FOR_MINORS": false,
+    "MAX_STOPS": 2
+  }
+}

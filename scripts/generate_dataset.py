@@ -77,7 +77,9 @@ passengers = pd.DataFrame({
     "passenger_id": [f"P{i:06d}" for i in range(NUM_PASSENGERS)],
     "name": [f"Passenger_{i}" for i in range(NUM_PASSENGERS)],
     "passenger_type": np.random.choice(ptype, NUM_PASSENGERS),
-    "loyalty_level": np.random.randint(0, 5, size=NUM_PASSENGERS)
+    "loyalty_level": np.random.randint(0, 5, size=NUM_PASSENGERS),
+    "is_unaccompanied_minor": np.random.choice([True, False], NUM_PASSENGERS, p=[0.02, 0.98]),
+    "is_on_duty_employee": np.random.choice([True, False], NUM_PASSENGERS, p=[0.03, 0.97])
 })
 
 # -----------------------
@@ -87,7 +89,8 @@ pnr = pd.DataFrame({
     "pnr_id": [f"PNR{i:06d}" for i in range(NUM_PASSENGERS)],
     "passenger_id": passengers["passenger_id"],
     "flight_id": np.random.choice(flights["flight_id"], NUM_PASSENGERS),
-    "seat_class": np.random.choice(["ECONOMY", "BUSINESS", "FIRST"], NUM_PASSENGERS)
+    "seat_class": np.random.choice(["ECONOMY", "BUSINESS", "FIRST"], NUM_PASSENGERS),
+    "ancillary_fee_paid": np.random.randint(0, 150, size=NUM_PASSENGERS)
 })
 
 # -----------------------

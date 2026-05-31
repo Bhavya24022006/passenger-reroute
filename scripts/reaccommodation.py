@@ -1,10 +1,18 @@
 import pandas as pd
 import heapq
+import json
 from collections import deque
 
 # ==============================
 # LOAD DATA
 # ==============================
+# Load business rules configuration
+with open("rules_config.json", "r") as f:
+    config = json.load(f)
+
+p_rules = config["passenger_priorities"]
+f_rules = config["flight_ranking_rules"]
+c_rules = config["constraints"]
 
 flights = pd.read_csv("data/raw/flights.csv")
 passengers = pd.read_csv("data/raw/passengers.csv")
@@ -42,16 +50,27 @@ impacted = impacted.merge(flights, on='flight_id')
 
 def passenger_priority(row):
     score = 0
-    if row['seat_class'] == 'BUSINESS':
-        score += 20
-    else:
-        score += 10
     
+    # 1. Base Class Score from Config
+    if row['seat_class'] == 'FIRST':
+        score += p_rules["FIRST_CLASS_SCORE"]
+    elif row['seat_class'] == 'BUSINESS':
+        score += p_rules["BUSINESS_CLASS_SCORE"]
+    else:
+        score += p_rules["ECONOMY_CLASS_SCORE"]
+    
+    # 2. Add Loyalty Level directly
     try:
         score += int(row['loyalty_level'])
     except:
         pass
-    
+        
+    # 3. Apply New Mandatory Priority Markers
+    if bool(row.get('is_unaccompanied_minor', False)):
+        score += p_rules["UNACCOMPANIED_MINOR_SCORE"]
+    if bool(row.get('is_on_duty_employee', False)):
+        score += p_rules["ON_DUTY_EMPLOYEE_SCORE"]
+        
     return score
 
 impacted['priority'] = impacted.apply(passenger_priority, axis=1)
@@ -80,8 +99,9 @@ for i, row in impacted.iterrows():
     for _, f in possible.iterrows():
         score = (
             row['priority'] * 100
-            - f['delay']
-            + seat_left[f['flight_id']] * 10
+            - (f['delay'] * f_rules["DELAY_PENALTY_FACTOR"] / 60.0) # Penalty per minute of delay
+            + seat_left[f['flight_id']] * f_rules["SEAT_AVAILABILITY_WEIGHT"]
+            - (row['ancillary_fee_paid'] * f_rules["ANCILLARY_LOSS_PENALTY_FACTOR"])
         )
         heapq.heappush(heap, (-score, i, f['flight_id']))
 
@@ -136,6 +156,8 @@ for _, f in flights.iterrows():
 # ==============================
 
 def find_multi_hop(row, max_stops=2):
+    if not c_rules["ALLOW_MULTIHOP_FOR_MINORS"] and bool(row.get('is_unaccompanied_minor', False)):
+        return None
     start = row['source_airport']
     end = row['destination_airport']
     start_time = row['departure_time']
