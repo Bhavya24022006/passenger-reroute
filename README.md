@@ -46,13 +46,13 @@ During baseline operational testing under a 2% schedule disruption factor across
 The system features a customized, dark-mode airport operations terminal interface built entirely without emojis for a clean, sleek corporate aesthetic. 
 
 ### Interactive Terminal Panel
-*(Insert your Sidebar Control Panel Image Here)*
+*<img src="images/sidebar.png.png" width="320" alt="Control Panel">
 
 ### Network Routing Analytics Dashboard
-*(Insert your Main KPI Metrics Layout Image Here)*
+<img src="images/matrix.png.png" width="850" alt="Analytics Dashboard">
 
 ### Passenger Manifest & Verification Logs
-*(Insert your Data Tables and Tab Views Image Here)*
+<img src="images/tables.png.png" width="850" alt="Data Manifest Tables">
 
 <!-- --- -->
 
